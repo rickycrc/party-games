@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyGames.Web", "PartyGames.Web\PartyGames.Web.csproj", "{09AED505-C98C-4C58-820A-AFF8A5D4EA93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyGames.Web.Tests", "PartyGames.Web.Tests\PartyGames.Web.Tests.csproj", "{3BECB2C9-20DC-44ED-8126-2B113BAA0015}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09AED505-C98C-4C58-820A-AFF8A5D4EA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09AED505-C98C-4C58-820A-AFF8A5D4EA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09AED505-C98C-4C58-820A-AFF8A5D4EA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09AED505-C98C-4C58-820A-AFF8A5D4EA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
