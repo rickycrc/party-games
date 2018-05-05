@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "MockPlay";
+    Layout = "~/Views/Bingo/_Master.cshtml";
+}
+
+<div style="padding: 5px;" id="iframes-init">
+    @Html.TextBox("txtCount", "30", new {style = "width: 30px;"})
+    <button id="btnAddIFrame">Add</button>
+</div>
+
+<div id="iframes"></div>
+
+<script type="text/javascript">
+    $("#btnAddIFrame").on("click",
+        function(e) {
+            e.preventDefault();
+            var count = parseInt($("#txtCount").val());
+
+
+            $.ajax({
+                url: 'https://randomuser.me/api/?inc=name&nat=us,ca,au&results=' + count,
+                dataType: 'json',
+                success: function(data) {
+
+                    var names = [];
+
+                    $.each(data.results,
+                        function(idx, result) {
+                            var name = result.name.first + " " + result.name.last;
+                            names.push(name);
+                        });
+
+                    for (var i = 0; i < count; i++) {
+                        var $iframe =
+                            $(
+                                "<iframe style='border:none; width: 400px; height:600px; overflow-y: hidden;' scrolling='no' src='/bingo/play?newkey=true&name=" +
+                                names[i] +
+                                "&pwd=3388' />");
+                        $("#iframes").append($iframe);
+                    }
+
+                    $("#iframes-init").remove();
+                }
+            });
+
+
+        });
+</script>

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyGames.Web", "PartyGame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyGames.Web.Tests", "PartyGames.Web.Tests\PartyGames.Web.Tests.csproj", "{3BECB2C9-20DC-44ED-8126-2B113BAA0015}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyGames.Data", "PartyGames.Data\PartyGames.Data.csproj", "{F3FF7D3B-AD3A-45B9-8726-8220795FE4BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyGames.Service", "PartyGames.Service\PartyGames.Service.csproj", "{8316F941-8DBD-4DC9-9478-C26826A4CDDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BECB2C9-20DC-44ED-8126-2B113BAA0015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3FF7D3B-AD3A-45B9-8726-8220795FE4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3FF7D3B-AD3A-45B9-8726-8220795FE4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3FF7D3B-AD3A-45B9-8726-8220795FE4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3FF7D3B-AD3A-45B9-8726-8220795FE4BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8316F941-8DBD-4DC9-9478-C26826A4CDDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8316F941-8DBD-4DC9-9478-C26826A4CDDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8316F941-8DBD-4DC9-9478-C26826A4CDDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8316F941-8DBD-4DC9-9478-C26826A4CDDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

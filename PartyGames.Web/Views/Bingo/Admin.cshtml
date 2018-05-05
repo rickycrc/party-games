@@ -1,0 +1,125 @@
+﻿@model AdminModel
+@{
+    Html.AddTitleParts("Admin");
+    Layout = "~/Views/Bingo/_Master.cshtml";
+}
+
+
+<div class="container">
+
+    <h1>Bingo Admin Panel</h1>
+
+    @if (TempData["panel_messages"] != null)
+    {
+        var messages = (List<PanelMessageModel>)TempData["panel_messages"];
+
+        foreach (var message in messages)
+        {
+            var strMsgType = Enum.GetName(typeof(PanelMessageType), message.PanelMessageType);
+
+            <div class="alert alert-@strMsgType alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @message.Message
+            </div>
+        }
+    }
+
+    <div>
+        <div class="function-bar">
+            <a href="javascript:window.location.reload();"><i class="fa fa-sync-alt"></i>reload</a>
+            <a href="@Url.Action("MockPlay", "Bingo")" target="_blank"><i class="fa fa-external-link-alt"></i>Mock Play</a>
+            <a href="@Url.Action("AdminReset", new {resetCard = false})" onclick="return confirm('Are you sure want to reset?');"><i class="fa fa-exclamation-triangle"></i>reset</a>
+            <a href="@Url.Action("AdminReset", new {resetCard = true})" onclick="return confirm('Are you sure want to reset?');"><i class="fa fa-exclamation-triangle"></i>reset & regenerate cards (EPOS)</a>
+            <a href="@Url.Action("AdminRoll")"><i class="fa fa-external-link-alt"></i>roll new number</a>
+            <a href="@Url.Action("Dashboard")"><i class="fa fa-external-link-alt"></i>dashboard</a>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Game Details</h2>
+                <table class="table table-bordered">
+                    <tr>
+                        <td style="width: 200px;">Password</td>
+                        <td>@Model.Game.Password</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 200px;">Rolled Numbers:</td>
+                        <td>[@Model.Game.RolledNumbers.Count] - @string.Join(", ", Model.Game.RolledNumbers)</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                @using (Html.BeginForm("AdminNewCard", "Bingo", FormMethod.Post))
+                {
+                    <h2>Add new card</h2>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td style="width: 200px;">**Card Number:</td>
+                            <td>@Html.TextBox("NewCard.No", Request.QueryString["no"], new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 200px;">Name</td>
+                            <td>@Html.TextBox("NewCard.Name", Request.QueryString["name"], new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="submit" value="送出" class="btn btn-primary" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </div>
+
+
+        <h2>Total @Model.Players.Count players in game</h2>
+
+        <div class="row">
+
+            @foreach (var player in Model.Players)
+            {
+                var mark3 = player.GameMark.Mark3.Count == 0 ? "X" : string.Join(",", player.GameMark.Mark3);
+                var icon = mark3 == "X" ? "<i class='fa fa-times'></i>" : "<i class='fa fa-check' style='color: Green;'></i> " + mark3;
+
+                <div class="col-md-3">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>No.</td>
+                            <td>#@player.CardUniqueNo</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>@player.Name.ToUpper()</td>
+                        </tr>
+                        <tr>
+                            <td>Marks:</td>
+                            <td>@Html.Raw(icon) / 中 @(player.GameMark.Mark1) 個 / 叫 @(player.GameMark.Mark2) 飛</td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="2">
+                                <div class="clearfix">
+                                    @foreach (var s in player.CardNumbers)
+                                    {
+                                        var isActive = Model.Game.RolledNumbers.Contains(s) ? "text-decoration: underline; font-weight: bold; color: Red" : "";
+
+                                        <div style="display: block; float: left; line-height: 2; text-align: center; width: 20%; @isActive">@s</div>
+                                    }
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Action</td>
+                            <td>
+                                <a href="@Url.Action("AdminDeletePlayer", new {key = player.Key})">Delete</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

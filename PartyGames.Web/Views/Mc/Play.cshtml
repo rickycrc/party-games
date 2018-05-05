@@ -1,0 +1,155 @@
+﻿@model GamePlayModel
+
+@{
+    Layout = "~/Views/Mc/_Master.cshtml";
+    Html.AddTitleParts(Model.Game.Caption);
+}
+
+<div class="main">
+    <div class="main__title">
+        <a href="@Url.Action("Index", "Home")" class="title-icon home"></a>
+        <a href="#" class="title-icon play-sound"></a>
+        @Model.Game.Caption
+    </div>
+    <div class="main__summary">Playing 1 / 10 Marks: 10</div>
+    <div class="main__inner">
+        <div class="panel-retry">
+            <a class="panel-retry__link" href="javascript:window.location.reload(true);">
+                <i class="fas fa-undo-alt fa-5x"></i>
+                <span class="panel-retry__text">REPLAY</span>
+            </a>
+        </div>
+        <div class="panel-start">
+            <a href="#" class="panel-start__levels easy" data-level="easy">easy</a>
+            <a href="#" class="panel-start__levels medium" data-level="medium">medium</a>
+            <a href="#" class="panel-start__levels hard" data-level="hard">hard</a>
+        </div>
+        <div class="panel-play">
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $("body").css("background-image", "url('/upload/mc_bg/@(Model.Game.ApiType).jpg')");
+
+    var animationEndEvent = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend";
+    var $btnPlaySound = $(".main__title .play-sound");
+
+    $btnPlaySound
+        .on("change", function (e, $quizEle) {
+
+            var $this = $(this);
+
+            if (!$quizEle)
+                return;
+
+            if ($quizEle.data("audio")) {
+                $this.data("audio", $quizEle.data("audio")).show();
+            }
+            else {
+                $this.removeData("audio").hide();
+            }
+        })
+        .on("click", function (e, forceAudioStop) {
+
+            e.preventDefault();
+            var $this = $(this);
+
+            if ($this.hasClass("playing"))
+                return;
+
+            $this.addClass("animated swing playing").one(animationEndEvent, function () {
+                $this.removeClass("animated swing playing");
+            });
+
+            var soundPlayer = new Audio($this.data("audio"));
+            soundPlayer.play();
+
+        });
+
+    $(".panel-start__levels").on("click", function (e) {
+        e.preventDefault();
+
+        if ($(".panel-start").hasClass("loading"))
+            return;
+
+        $(".panel-start").addClass("loading");
+
+        var level = $(this).data("level");
+
+        var response = $.ajax({
+            url: "@Url.Action("GetQuestions")",
+            type: "POST",
+            data: {
+                type: "GET-@Model.Game.ApiType",
+                level: level
+            }
+        });
+
+        response.done(function (data) {
+
+            $(".panel-start").hide();
+            $(".panel-play").show().html(data);
+
+            setTimeout(function () {
+                var $quiz = $(".quiz:eq(0)");
+
+                $btnPlaySound.trigger("change", [$quiz]);
+                $quiz.fadeIn();
+
+            }, 500);
+
+
+        });
+
+        response.always(function () {
+            $(".panel-start").removeClass("loading");
+        });
+    });
+
+    $(".panel-play")
+        .on("click", ".quiz__image", function (e) {
+            //$(this).parent().find(".quiz__playsound").trigger("click");
+            $btnPlaySound.trigger("click");
+        })
+        .on("click", ".quiz__option", function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            if ($this.data("correct") === true) {
+
+                var $thisQuiz = $this.closest(".quiz");
+                var $nextQuiz = $thisQuiz.next();
+
+                var timeout = 0;
+
+                if ($thisQuiz.data("audio")) {
+                    $btnPlaySound.trigger("click");
+                    timeout = 1000;
+                }
+
+                setTimeout(function () {
+                    $thisQuiz.fadeOut(500, function () {
+                        $nextQuiz.fadeIn(1000);
+                    });
+
+                    //hide/show volumn
+                    $btnPlaySound.trigger("change", [$nextQuiz]);
+
+                    if ($nextQuiz.length === 0) {
+                        $(".panel-retry").show();
+                        $(".panel-play").hide();
+                    }
+                    //alert("correct");
+                }, timeout);
+
+
+            } else {
+                $this.addClass("animated shake").one(animationEndEvent, function () {
+                    $this.removeClass("animated shake");
+                });
+            }
+        });
+
+</script>

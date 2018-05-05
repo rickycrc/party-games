@@ -1,0 +1,485 @@
+﻿@font-face {
+  font-family: Closeness;
+  src: url(/Asserts/fonts/Closeness.ttf);
+}
+html,
+body {
+  min-height: 100%;
+}
+body.play {
+  background: #FFF url(/Asserts/images/ac_Fabric_Bk.jpg) no-repeat center center;
+  background-size: cover;
+}
+body.dashboard {
+  background-color: #2d0503;
+}
+body.new-winner {
+  overflow-y: hidden;
+}
+body.new-winner div.new-winner_bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+body.new-winner div.new-winner_bg img {
+  margin-top: 40px;
+}
+body {
+  font-family: 'Arial Unicode MS', Arial;
+}
+.header {
+  font-size: 20px;
+  color: #ff0000;
+}
+.shadow-inset {
+  -moz-box-shadow: inset 0 0 10px #FFF944;
+  -webkit-box-shadow: inset 0 0 10px #FFF944;
+  box-shadow: inset 0 0 10px #FFF944;
+}
+.shadow-3d {
+  text-shadow: 1px 1px 0 #FFAF02, 2px 2px 0 #FFAF02, /* end of 2 level deep grey shadow */ 3px 3px 0 #444, 4px 4px 0 #444, 5px 5px 0 #444, 6px 6px 0 #444;
+  /* end of 4 level deep dark shadow */
+}
+.bingo-gamekey {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 10px;
+  color: #e7e7e7;
+}
+.bingo-loading {
+  margin: 50px 0;
+  color: #fff;
+  font-size: 20px;
+}
+.bingo-change-name {
+  display: none;
+  margin-top: 100px;
+  min-height: 400px;
+}
+.bingo-change-name .title {
+  color: #fff;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.bingo-change-name input[type=text],
+.bingo-change-name input[type=tel] {
+  background: #fff url(/Asserts/images/icon/user-24.png) no-repeat 10px center;
+  border: solid 1px #fff;
+  height: 40px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 50px;
+  border: none;
+}
+.bingo-change-name #btnChangeName {
+  margin: 20px auto 0 auto;
+  background-color: #E2954D;
+  color: #270304;
+  font-weight: bold;
+  display: block;
+  width: 60%;
+  padding: 10px 0;
+  border: none;
+  font-size: 20px;
+  border-radius: unset;
+}
+.enter-your-name {
+  display: none;
+  width: 90%;
+  margin: 50px auto;
+  font-family: 'Arial Unicode MS';
+  /*input[type=text] {
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        height: 40px;
+        color: #fff;
+        padding-left: 10px;
+
+        &:focus {
+            background-color: #0792CD;
+            outline: none;
+        }
+    }
+
+    .btn {
+        border: none;
+        background-color: transparent;
+        color: #fff;
+
+
+        &:focus {
+            background-color: transparent;
+            outline: none;
+        }
+    }*/
+}
+@media screen and (min-width: 768px) {
+  .enter-your-name {
+    width: 60%;
+  }
+}
+.enter-your-name input[type=text],
+.enter-your-name input[type=tel] {
+  border: solid 1px #fff;
+  height: 40px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: block;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 50px;
+  border: none;
+}
+.enter-your-name input[type=text].input-name,
+.enter-your-name input[type=tel].input-name {
+  background: #CECFDC url(/Asserts/images/icon/user-24.png) no-repeat 10px center;
+}
+.enter-your-name input[type=text].input-password,
+.enter-your-name input[type=tel].input-password {
+  background: #CECFDC url(/Asserts/images/icon/icons_password-24.png) no-repeat 10px center;
+}
+.enter-your-name #btnSubmitName {
+  margin: 20px auto 0 auto;
+  background-color: #E2954D;
+  color: #270304;
+  font-weight: bold;
+  display: block;
+  width: 60%;
+  padding: 10px 0;
+  border: none;
+  font-size: 20px;
+  border-radius: unset;
+}
+.clientGame {
+  text-align: center;
+  background-color: #2F0F13;
+  padding: 15px;
+  margin-top: 30px;
+  /*flexbox*/
+}
+.clientGame h2 {
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #FFF;
+  font-size: 5.5em;
+  letter-spacing: 20px;
+  font-family: Closeness;
+}
+@media screen and (max-width: 767px) {
+  .clientGame h2 {
+    font-size: 4em;
+    letter-spacing: 15px;
+  }
+}
+.clientGame .bingo-no-box {
+  display: none;
+  margin: 10px 0 0px 0;
+}
+.clientGame .bingo-no-box .card-name {
+  text-transform: uppercase;
+  font-size: 23px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.clientGame .bingo-no-box .card-name .edit-name {
+  margin-top: -5px;
+  display: inline-block;
+  color: #fff;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.clientGame .bingo-no-box .footer-logo {
+  margin: 10px 0 0 0;
+}
+.clientGame .bingo-no-box .footer-logo img {
+  width: 120px;
+}
+.clientGame .bingo-no-box .inner {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+.clientGame .bingo-no-box .inner .bingoBox {
+  flex: 1 0 auto;
+  position: relative;
+  width: 20%;
+  /*bingo star*/
+}
+.clientGame .bingo-no-box .inner .bingoBox:after {
+  content: "";
+  float: left;
+  display: block;
+  padding-top: 100%;
+}
+.clientGame .bingo-no-box .inner .bingoBox .bingoItem {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: 2%;
+}
+.clientGame .bingo-no-box .inner .bingoBox .bingoNumber {
+  font-family: Closeness;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  letter-spacing: 7px;
+  color: #270304;
+  font-weight: bold;
+  background-color: #FFF;
+}
+.clientGame .bingo-no-box .inner .bingoBox .bingoNumber.active {
+  background-color: #E2954D;
+  color: #270304;
+}
+@media screen and (max-width: 767px) {
+  .clientGame .bingo-no-box .inner .bingoBox .bingoNumber {
+    font-size: 2em;
+  }
+}
+/*odometer style*/
+.window {
+  font-size: 270px;
+  font-family: Closeness;
+  border-radius: 20px;
+  border: 10px solid #B5A9A9;
+  margin-top: 50px;
+  background: #D52A2A;
+}
+.window:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 6px;
+}
+.window:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 6px;
+}
+.ezslots {
+  width: 940px;
+}
+.ezslots > .window {
+  overflow: hidden;
+  display: inline-block;
+}
+.ezslots > .window > .slider > .symbol {
+  text-align: center;
+  display: table;
+}
+.ezslots > .window > .slider > .symbol > .content {
+  padding: 0px;
+  margin: 0px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+}
+/*ADMIN*/
+.function-bar {
+  padding: 10px;
+  background-color: gainsboro;
+}
+.function-bar a {
+  color: #B91111;
+  margin-right: 15px;
+}
+.function-bar a svg {
+  margin-right: 5px;
+}
+.bingo-dashboard {
+  min-height: 100%;
+  background-color: #2d0503;
+}
+.bingo-dashboard .inner {
+  position: relative;
+  min-height: 1000px;
+  width: 1024px;
+  margin: 0 auto;
+  background: #2d0503 url(/Asserts/images/Bingo_v1.jpg) no-repeat top center;
+}
+.bingo-dashboard .cols {
+  position: absolute;
+  top: 70px;
+  width: 50px;
+  height: 750px;
+}
+.bingo-dashboard .cols span.no {
+  font-size: 31px;
+  line-height: 1.5;
+  color: #fff;
+  display: block;
+  width: 50px;
+  text-align: center;
+}
+.bingo-dashboard .cols span.no.active {
+  border-radius: 15px;
+  background-color: #ff0000;
+}
+.bingo-dashboard .col-b {
+  left: 10px;
+}
+.bingo-dashboard .col-i {
+  left: 70px;
+}
+.bingo-dashboard .col-n {
+  left: 135px;
+}
+.bingo-dashboard .col-g {
+  left: 195px;
+}
+.bingo-dashboard .col-o {
+  left: 260px;
+}
+.bingo-dashboard .bingo-digit {
+  font-family: Closeness;
+  position: absolute;
+  top: 205px;
+  font-size: 230px;
+  width: 205px;
+  text-align: center;
+  color: #AA0F17;
+  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-color: black;
+}
+.bingo-dashboard .bingo-digit.d1 {
+  left: 420px;
+}
+.bingo-dashboard .bingo-digit.d2 {
+  left: 650px;
+}
+.bingo-dashboard .btn-roll {
+  position: absolute;
+  right: 15px;
+  top: 250px;
+  width: 120px;
+  height: 250px;
+  cursor: pointer;
+}
+.bingo-dashboard .champion-list {
+  position: absolute;
+  left: 0;
+  top: 770px;
+  width: 325px;
+}
+.bingo-dashboard .champion-list .banner img {
+  width: 100%;
+}
+.bingo-dashboard .champion-list .banner {
+  position: relative;
+}
+.bingo-dashboard .champion-list .banner .champion-count {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 20px;
+  color: #333;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: #D6BB74;
+  text-align: center;
+  line-height: 30px;
+}
+.bingo-dashboard .champion-list div.name {
+  position: relative;
+  margin-bottom: 10px;
+  background-color: #4E112E;
+  font-size: 20px;
+  padding: 10px;
+  color: #D4B870;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.bingo-dashboard .champion-list div.name .circle-no {
+  background-color: #A41A24;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 18px;
+}
+.bingo-dashboard .champion-list div.name .ranking {
+  font-size: 30px;
+}
+.bingo-dashboard .champion-list div.name.active {
+  background-color: #D4B870;
+  color: #4E112E;
+}
+.bingo-dashboard .champion-list div.name.active .circle-no {
+  color: #D4B870;
+  background-color: #4E112E;
+}
+.bingo-dashboard .player-list {
+  position: absolute;
+  top: 540px;
+  left: 370px;
+  width: 530px;
+  border: 5px solid #F7D93A;
+}
+.bingo-dashboard .player-list .td-style {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Helvetica, Arial, STHeitiTC-light, STHeiti, "Microsoft JhengHei";
+  background-color: #1C0907;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.bingo-dashboard .player-list .player-list-header td {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Helvetica, Arial, STHeitiTC-light, STHeiti, "Microsoft JhengHei";
+  background-color: #1C0907;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.bingo-dashboard .player-list tr.data td {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Helvetica Neue", Helvetica, Arial, STHeitiTC-light, STHeiti, "Microsoft JhengHei";
+  background-color: #1C0907;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.bingo-dashboard .player-list tr.data td span.name {
+  cursor: pointer;
+}
+.bingo-dashboard .player-list tr.data td .circle-no {
+  background-color: #A41A24;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50px;
+}
+.bingo-dashboard .player-list tr:nth-child(even) td {
+  background-color: #4e3532;
+}

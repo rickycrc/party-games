@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Root.cshtml";
+    Html.AddTitleParts("Bingo");
+    Html.AddScriptPart("/Asserts/js/bingo/bingo.js");
+}
+
+<script type="text/javascript">
+
+    $.api = function (type) {
+
+        var links = {
+            play: "@Url.Action("Play", "Bingo")",
+            addPlayer: "@Url.Action("AddPlayer", "BingoApi")",
+            getPlayer: "@Url.Action("GetPlayer", "BingoApi")",
+            liveData: "@Url.Action("GetLiveData", "BingoApi")",
+            playerList: "@Url.Action("GetPlayerList", "BingoApi")",
+            bingoRoll: "@Url.Action("BingoRoll", "BingoApi")",
+            changeName: "@Url.Action("ChangeName", "BingoApi")"
+        };
+
+        if (!links.hasOwnProperty(type)) {
+
+            for (var property in links) {
+                if (links.hasOwnProperty(property)) {
+                    console.log(property);
+                }
+            }
+
+            alert("Invaild api link. Type:" + type);
+            return null;
+        }
+
+        return links[type];
+    }
+
+</script>
+
+@RenderBody()
+
+@*
+    @Html.Hidden("Ws.ResetBingo", Url.Action("ResetBingo", "BingoApi"))
+    @Html.Hidden("Ws.AddPlayer", Url.Action("AddPlayer", "BingoApi"))
+*@

@@ -1,0 +1,18 @@
+﻿@model List<McQuestionModel>
+
+@foreach (var question in Model)
+{
+    <div class="quiz" data-audio="@question.AudioPath">
+        <div class="quiz__question">
+            <img src="@question.ImagePath" class="quiz__image" />
+        </div>
+
+        <div class="quiz__answer">
+            @foreach (var ans in question.McAnswers)
+            {
+                <a class="quiz__option" data-correct="@((ans.Key == question.Answer).ToString().ToLower())" href="#">@ans.Value</a>
+            }
+        </div>
+        <div class="quiz__no">@question.QuestionNo / @Model.Count</div>
+    </div>
+}

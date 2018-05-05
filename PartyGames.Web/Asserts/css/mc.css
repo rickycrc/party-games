@@ -1,0 +1,167 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100%;
+}
+body {
+  font-family: 'Comfortaa', cursive;
+  font-size: 75%;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+}
+.main {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+.main__title {
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  font-size: 30px;
+  margin: 0px;
+  color: #223F85;
+  font-weight: bold;
+  position: relative;
+}
+.main__title .title-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: absolute;
+  top: 0px;
+  border: solid 2px #223F85;
+  border-radius: 50%;
+}
+.main__title .title-icon.home {
+  background: #fff url(/Asserts/images/icon/home-24.png) no-repeat center center;
+  left: 0;
+}
+.main__title .title-icon.play-sound {
+  background: #fff url(/Asserts/images/icon/volume-24.png) no-repeat center center;
+  right: 0;
+  display: none;
+}
+.main__inner {
+  min-height: 300px;
+  overflow: hidden;
+}
+.main__summary {
+  text-align: center;
+  font-size: 15px;
+  display: none;
+}
+@media screen and (min-width: 500px) {
+  .main {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.panel-start {
+  overflow: hidden;
+  margin-top: 5px;
+}
+.panel-start.loading {
+  opacity: .3;
+}
+.panel-start__levels {
+  display: block;
+  background: url('/Asserts/images/Game_Level.png') no-repeat -129px 0;
+  width: 210px;
+  height: 69px;
+  text-indent: -9999px;
+  margin: 15px auto;
+}
+.panel-start__levels.easy {
+  background-position-y: -229px;
+}
+.panel-start__levels.medium {
+  background-position-y: -318px;
+}
+.panel-start__levels.hard {
+  background-position-y: -409px;
+}
+.panel-retry {
+  display: none;
+  margin: 80px 0 0 0;
+  text-align: center;
+  color: #333;
+}
+.panel-retry__link {
+  color: #223F85;
+  text-decoration: none;
+}
+.panel-retry__text {
+  display: block;
+  color: #223F85;
+  font-size: 25px;
+  font-weight: bold;
+}
+.panel-play {
+  display: none;
+  position: relative;
+}
+.panel-play__error {
+  text-align: left;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #ff0000;
+  background-color: #000;
+  padding: 5px 10px;
+  word-break: break-all;
+}
+.quiz {
+  display: none;
+}
+.quiz__no {
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #223F85;
+}
+.quiz__question {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+}
+.quiz__image {
+  max-width: 98%;
+  cursor: pointer;
+}
+.quiz__answer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px auto 20px auto;
+}
+a.quiz__option {
+  flex-grow: 1;
+  width: 48%;
+  margin: 0 1% 1% 1%;
+  text-align: center;
+  font-size: 18px;
+  padding: 15px 5px;
+  background-color: #004387;
+  border-bottom: solid 5px #80A1C3;
+  color: #fff;
+  text-decoration: none;
+}
+a.quiz__option:hover,
+a.quiz__option:active {
+  background-color: #0A1E50;
+  border-bottom: solid 5px #F0b432;
+}

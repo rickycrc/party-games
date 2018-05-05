@@ -1,0 +1,10 @@
+[
+  {
+    "outputFileName": "Asserts/js/bingo/bingo.js",
+    "inputFiles": [
+      "Asserts/js/bingo/bingo_master.js",
+      "Asserts/js/bingo/bingo_dashboard.js",
+      "Asserts/js/bingo/bingo_play.js"
+    ]
+  }
+]

@@ -1,0 +1,569 @@
+﻿@import "../libs/bootstrap-3.3.7/less/variables.less";
+
+@font-face {
+    font-family: Closeness;
+    src: url(/Asserts/fonts/Closeness.ttf);
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body.play {
+    background: #FFF url(/Asserts/images/ac_Fabric_Bk.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+body.dashboard {
+    background-color: #2d0503;
+}
+
+body.new-winner {
+    overflow-y: hidden;
+
+    div.new-winner_bg {
+        //display: none;
+        //transition: all linear 1s;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        //background: #000 url(/Asserts/images/Big_Win.jpg) no-repeat center center;
+        //background-size: cover;
+        //background-color: #531519;
+        text-align: center;
+
+        img {
+            //display: none;
+            margin-top: 40px;
+        }
+    }
+}
+
+body {
+    font-family: 'Arial Unicode MS', Arial;
+    //background: #c94b4b; /* fallback for old browsers */
+    //background: -webkit-linear-gradient(to top, #c94b4b, #4b134f); /* Chrome 10-25, Safari 5.1-6 */
+    //background: linear-gradient(to top, #c94b4b, #4b134f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.header {
+    font-size: 20px;
+    color: #ff0000;
+}
+
+.shadow-inset {
+    -moz-box-shadow: inset 0 0 10px #FFF944;
+    -webkit-box-shadow: inset 0 0 10px #FFF944;
+    box-shadow: inset 0 0 10px #FFF944;
+}
+
+.shadow-3d {
+    text-shadow: 1px 1px 0 #FFAF02, 2px 2px 0 #FFAF02, /* end of 2 level deep grey shadow */
+    3px 3px 0 #444, 4px 4px 0 #444, 5px 5px 0 #444, 6px 6px 0 #444; /* end of 4 level deep dark shadow */
+}
+
+.bingo-gamekey {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+    color: #e7e7e7;
+}
+
+.bingo-loading {
+    margin: 50px 0;
+    color: #fff;
+    font-size: 20px;
+}
+
+.bingo-change-name {
+    display: none;
+    margin-top: 100px;
+    min-height: 400px;
+
+    .title {
+        color: #fff;
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    input[type=text], input[type=tel] {
+        background: #fff url(/Asserts/images/icon/user-24.png) no-repeat 10px center;
+        border: solid 1px #fff;
+        height: 40px;
+        margin-bottom: 10px;
+        width: 100%;
+        display: block;
+        font-size: 16px;
+        text-align: left;
+        padding-left: 50px;
+        border: none;
+    }
+
+    #btnChangeName {
+        margin: 20px auto 0 auto;
+        background-color: #E2954D;
+        color: #270304;
+        font-weight: bold;
+        display: block;
+        width: 60%;
+        padding: 10px 0;
+        border: none;
+        font-size: 20px;
+        border-radius: unset;
+    }
+}
+
+.enter-your-name {
+    display: none;
+    width: 90%;
+    margin: 50px auto;
+    font-family: 'Arial Unicode MS';
+
+    @media screen and (min-width: @screen-sm-min) {
+        width: 60%;
+    }
+
+    input[type=text], input[type=tel] {
+        border: solid 1px #fff;
+        height: 40px;
+        margin-bottom: 10px;
+        width: 100%;
+        display: block;
+        font-size: 16px;
+        text-align: left;
+        padding-left: 50px;
+        border: none;
+
+        &.input-name {
+            background: #CECFDC url(/Asserts/images/icon/user-24.png) no-repeat 10px center;
+        }
+
+        &.input-password {
+            background: #CECFDC url(/Asserts/images/icon/icons_password-24.png) no-repeat 10px center;
+        }
+    }
+
+    #btnSubmitName {
+        margin: 20px auto 0 auto;
+        background-color: #E2954D;
+        color: #270304;
+        font-weight: bold;
+        display: block;
+        width: 60%;
+        padding: 10px 0;
+        border: none;
+        font-size: 20px;
+        border-radius: unset;
+    }
+    /*input[type=text] {
+        border: none;
+        background-color: transparent;
+        font-size: 16px;
+        height: 40px;
+        color: #fff;
+        padding-left: 10px;
+
+        &:focus {
+            background-color: #0792CD;
+            outline: none;
+        }
+    }
+
+    .btn {
+        border: none;
+        background-color: transparent;
+        color: #fff;
+
+
+        &:focus {
+            background-color: transparent;
+            outline: none;
+        }
+    }*/
+}
+
+
+
+.clientGame {
+    text-align: center;
+    //background: #B91111 url(/Asserts/images/BingoCard_600_Fabric.jpg) no-repeat center center;
+    //background-size: cover;
+    background-color: #2F0F13;
+    padding: 15px;
+    //border-radius: 15px;
+    //.shadow-inset;
+    margin-top: 30px;
+
+    h2 {
+        margin: 10px 0 0 0;
+        text-align: center;
+        //.shadow-3d;
+        color: #FFF;
+        font-size: 5.5em;
+        //font-weight: bold;
+        letter-spacing: 20px;
+        font-family: Closeness;
+
+        @media screen and (max-width: @screen-xs-max) {
+            font-size: 4em;
+            letter-spacing: 15px;
+        }
+    }
+    /*flexbox*/
+    .bingo-no-box {
+        display: none;
+        margin: 10px 0 0px 0;
+
+        .card-name {
+            text-transform: uppercase;
+            font-size: 23px;
+            color: #fff;
+            margin-bottom: 10px;
+
+            .edit-name {
+                margin-top: -5px;
+                display: inline-block;
+                color: #fff;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+        }
+
+        .footer-logo {
+            margin: 10px 0 0 0;
+
+            img {
+                width: 120px;
+            }
+        }
+
+        .inner {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            flex-wrap: wrap;
+
+
+            .bingoBox {
+                flex: 1 0 auto;
+                position: relative;
+                width: 20%;
+
+                &:after {
+                    content: "";
+                    float: left;
+                    display: block;
+                    padding-top: 100%;
+                }
+
+                .bingoItem {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    top: 0;
+                    margin: 2%;
+                }
+
+
+                .bingoNumber {
+                    font-family: Closeness;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    //border-radius: 8px;
+                    font-size: 2.5em;
+                    letter-spacing: 7px;
+                    color: #270304;
+                    font-weight: bold;
+                    background-color: #FFF;
+                    //ckground: linear-gradient(to top, #c9d6ff, #e2e2e2);
+                    &.active {
+                        background-color: #E2954D;
+                        color: #270304;
+                    }
+
+                    @media screen and (max-width: @screen-xs-max) {
+                        font-size: 2em;
+                    }
+                }
+                /*bingo star*/
+                &:nth-child(13) {
+                    .bingoNumber:before {
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*odometer style*/
+
+.window {
+    font-size: 270px;
+    font-family: Closeness;
+    border-radius: 20px;
+    border: 10px solid #B5A9A9;
+    margin-top: 50px;
+    background: #D52A2A;
+
+    &:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right-width: 6px;
+    }
+
+    &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left-width: 6px;
+    }
+}
+
+.ezslots {
+    width: 940px;
+}
+
+.ezslots > .window {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.ezslots > .window > .slider > .symbol {
+    text-align: center;
+    display: table;
+}
+
+.ezslots > .window > .slider > .symbol > .content {
+    padding: 0px;
+    margin: 0px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+}
+
+
+/*ADMIN*/
+
+.function-bar {
+    padding: 10px;
+    background-color: gainsboro;
+
+    a {
+        svg {
+            margin-right: 5px;
+        }
+
+        color: #B91111;
+        margin-right: 15px;
+    }
+}
+
+
+.bingo-dashboard {
+    min-height: 100%;
+    background-color: #2d0503;
+
+    .inner {
+        position: relative;
+        min-height: 1000px;
+        width: 1024px;
+        margin: 0 auto;
+        background: #2d0503 url(/Asserts/images/Bingo_v1.jpg) no-repeat top center;
+    }
+
+    .cols {
+        position: absolute;
+        top: 70px;
+        width: 50px;
+        height: 750px;
+
+        span.no {
+            font-size: 31px;
+            line-height: 1.5;
+            color: #fff;
+            display: block;
+            width: 50px;
+            text-align: center;
+
+            &.active {
+                border-radius: 15px;
+                background-color: #ff0000;
+            }
+        }
+    }
+
+    .col-b {
+        left: 10px;
+    }
+
+    .col-i {
+        left: 70px;
+    }
+
+    .col-n {
+        left: 135px;
+    }
+
+    .col-g {
+        left: 195px;
+    }
+
+    .col-o {
+        left: 260px;
+    }
+
+    .bingo-digit {
+        font-family: Closeness;
+        position: absolute;
+        top: 205px;
+        font-size: 230px;
+        //line-height: 250px;
+        width: 205px;
+        text-align: center;
+        color: #AA0F17;
+        -webkit-text-stroke-width: 4px;
+        -webkit-text-stroke-color: black;
+        //background-color: #e7e7e7;
+        &.d1 {
+            left: 420px;
+        }
+
+        &.d2 {
+            left: 650px;
+        }
+    }
+
+    .btn-roll {
+        position: absolute;
+        right: 15px;
+        top: 250px;
+        width: 120px;
+        height: 250px;
+        cursor: pointer;
+    }
+
+    .noCircle(@width) {
+        background-color: #A41A24;
+        display: inline-block;
+        width: @width;
+        height: @width;
+        text-align: center;
+        line-height: @width;
+        border-radius: @width;
+    }
+
+    .champion-list {
+        position: absolute;
+        left: 0;
+        top: 770px;
+        width: 325px;
+
+        .banner img {
+            width: 100%;
+        }
+
+        .banner {
+            position: relative;
+
+            .champion-count {
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                font-size: 20px;
+                color: #333;
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                background-color: #D6BB74;
+                text-align: center;
+                line-height: 30px;
+            }
+        }
+
+        div.name {
+            position: relative;
+            margin-bottom: 10px;
+            background-color: #4E112E;
+            font-size: 20px;
+            padding: 10px;
+            color: #D4B870;
+            text-transform: uppercase;
+            cursor: pointer;
+
+            .circle-no {
+                .noCircle(30px);
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                //margin-left: 10px;
+                font-size: 18px;
+            }
+
+            .ranking {
+                //text-decoration: underline;
+                font-size: 30px;
+            }
+
+            &.active {
+                background-color: #D4B870;
+                color: #4E112E;
+
+                .circle-no {
+                    color: #D4B870;
+                    background-color: #4E112E;
+                }
+            }
+        }
+    }
+
+    .player-list {
+        position: absolute;
+        top: 540px;
+        left: 370px;
+        width: 530px;
+        border: 5px solid #F7D93A;
+
+        .td-style {
+            color: #fff;
+            font-size: 20px;
+            line-height: 1.5;
+            font-family: "Helvetica Neue", Helvetica, Arial, STHeitiTC-light, STHeiti, "Microsoft JhengHei";
+            background-color: #1C0907;
+            padding: 5px 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .player-list-header td {
+            .td-style;
+            //border-bottom: solid 1px #e7e7e7;
+        }
+
+        tr.data td {
+            .td-style;
+
+            span.name {
+                cursor: pointer;
+            }
+
+            .circle-no {
+                .noCircle(50px);
+            }
+        }
+
+        tr:nth-child(even) td {
+            background-color: #4e3532;
+        }
+    }
+}

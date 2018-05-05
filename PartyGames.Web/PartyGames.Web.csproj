@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.8.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.8.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -48,6 +48,34 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Autofac, Version=4.8.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.0\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.2.0\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -59,7 +87,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -116,16 +149,150 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoFacConfig.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BingoApiController.cs" />
+    <Compile Include="Controllers\BingoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\McController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BaseController.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\JsonNetResult.cs" />
+    <Compile Include="Infrastructure\Layout\IPageHeadBuilder.cs" />
+    <Compile Include="Infrastructure\Layout\LayoutExtentions.cs" />
+    <Compile Include="Infrastructure\Layout\PageHeadBuilder.cs" />
+    <Compile Include="Models\Bingo\AdminModel.cs" />
+    <Compile Include="Models\Bingo\GameModel.cs" />
+    <Compile Include="Models\Bingo\NewCardModel.cs" />
+    <Compile Include="Models\Bingo\RankingPlayerModel.cs" />
+    <Compile Include="Models\Bingo\PlayerModel.cs" />
+    <Compile Include="Models\Common\PanelMessageType.cs" />
+    <Compile Include="Models\Common\PanelMessageModel.cs" />
+    <Compile Include="Models\Home\LandingModel.cs" />
+    <Compile Include="Models\Mc\GamePlayModel.cs" />
+    <Compile Include="Models\Mc\McGameModel.cs" />
+    <Compile Include="Models\Mc\McQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="android-chrome-96x96.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="Asserts\css\bingo.css" />
+    <Content Include="Asserts\css\bingo.min.css">
+      <DependentUpon>bingo.css</DependentUpon>
+    </Content>
+    <Content Include="Asserts\css\bootstrap.css" />
+    <Content Include="Asserts\css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Asserts\css\home.css" />
+    <Content Include="Asserts\css\home.min.css">
+      <DependentUpon>home.css</DependentUpon>
+    </Content>
+    <Content Include="Asserts\css\mc.css" />
+    <Content Include="Asserts\css\mc.min.css">
+      <DependentUpon>mc.css</DependentUpon>
+    </Content>
+    <Content Include="Asserts\images\aclogo_small.png" />
+    <Content Include="Asserts\images\ac_Fabric_Bk.jpg" />
+    <Content Include="Asserts\images\AC_Logo_Footer.jpg" />
+    <Content Include="Asserts\images\Big_Win.jpg" />
+    <Content Include="Asserts\images\BingoCard_600.jpg" />
+    <Content Include="Asserts\images\BingoCard_600_Fabric.jpg" />
+    <Content Include="Asserts\images\Bingo_AwardList.png" />
+    <Content Include="Asserts\images\Bingo_v1.jpg" />
+    <Content Include="Asserts\images\Bingo_Win_3a.png" />
+    <Content Include="Asserts\images\blue-world-blur.jpg" />
+    <Content Include="Asserts\images\blue-world.jpg" />
+    <Content Include="Asserts\images\Feng_Logo_100.jpg" />
+    <Content Include="Asserts\images\Game_Box_Logo.jpg" />
+    <Content Include="Asserts\images\game_home_bg.png" />
+    <Content Include="Asserts\images\Game_Level.png" />
+    <Content Include="Asserts\images\icon\home-24.png" />
+    <Content Include="Asserts\images\icon\edit-20.png" />
+    <Content Include="Asserts\images\icon\volume-24.png" />
+    <Content Include="Asserts\images\icon\icons_password-24.png" />
+    <Content Include="Asserts\images\icon\lock-24-32.png" />
+    <Content Include="Asserts\images\icon\user-24.png" />
+    <Content Include="Asserts\images\icon\user-32.png" />
+    <Content Include="Asserts\js\bingo\bingo.js" />
+    <Content Include="Asserts\js\bingo\bingo.min.js">
+      <DependentUpon>bingo.js</DependentUpon>
+    </Content>
+    <Content Include="Asserts\js\bingo\bingo_dashboard.js" />
+    <Content Include="Asserts\js\bingo\bingo_play.js" />
+    <Content Include="Asserts\js\bingo\bingo_master.js" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\js\bootstrap.js" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\js\bootstrap.min.js" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\js\npm.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\css\fa-svg-with-js.css" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-brands.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-brands.min.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-regular.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-regular.min.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-solid.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-solid.min.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-v4-shims.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fa-v4-shims.min.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fontawesome-all.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fontawesome-all.min.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fontawesome.js" />
+    <Content Include="Asserts\libs\fontawesome-free-5.0.7\svg-with-js\js\fontawesome.min.js" />
+    <Content Include="Asserts\less\mc.less" />
+    <Content Include="Asserts\less\bingo.less" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="safari-pinned-tab.svg" />
+    <Content Include="Views\Bingo\Admin.cshtml" />
+    <Content Include="Views\Bingo\Dashboard.cshtml" />
+    <Content Include="Views\Bingo\MockPlay.cshtml" />
+    <Content Include="Views\Bingo\Play.cshtml" />
+    <Content Include="Views\Bingo\_Master.cshtml" />
+    <Content Include="Views\Mc\Play.cshtml" />
+    <Content Include="Views\Mc\_Quiz.cshtml" />
+    <Content Include="Views\Shared\_Root.cshtml" />
+    <Content Include="Views\Mc\_Master.cshtml" />
+    <Content Include="Asserts\less\home.less" />
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="site.webmanifest" />
+    <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceer40EN.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlcecompact40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\sqlceca40.dll" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\README_ENU.txt" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\msvcr90.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlcese40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceqp40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceme40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceer40EN.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlcecompact40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\sqlceca40.dll" />
+    <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
+    <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
+    <None Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.intellisense.js" />
+    <Content Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.js" />
+    <Content Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.min.js" />
+    <Content Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.slim.js" />
+    <Content Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.slim.min.js" />
+    <Content Include="Asserts\libs\helpers\cookie.js" />
+    <Content Include="Asserts\libs\helpers\querystring.js" />
+    <Content Include="Asserts\mp3\Bingo-Draw1.mp3" />
+    <Content Include="Asserts\mp3\Bingo-Draw2.mp3" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -140,18 +307,106 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
+    <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Asserts\fonts\Closeness.ttf" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\.csscomb.json" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\.csslintrc" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\alerts.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\badges.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\bootstrap.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\breadcrumbs.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\button-groups.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\buttons.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\carousel.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\close.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\code.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\component-animations.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\dropdowns.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\forms.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\glyphicons.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\grid.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\input-groups.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\jumbotron.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\labels.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\list-group.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\media.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\alerts.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\background-variant.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\border-radius.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\buttons.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\center-block.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\clearfix.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\forms.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\gradients.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\grid-framework.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\grid.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\hide-text.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\image.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\labels.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\list-group.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\nav-divider.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\nav-vertical-align.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\opacity.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\pagination.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\panels.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\progress-bar.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\reset-filter.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\reset-text.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\resize.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\responsive-visibility.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\size.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\tab-focus.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\table-row.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\text-emphasis.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\text-overflow.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\mixins\vendor-prefixes.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\modals.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\navbar.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\navs.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\normalize.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\pager.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\pagination.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\panels.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\popovers.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\print.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\progress-bars.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\responsive-embed.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\responsive-utilities.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\scaffolding.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\tables.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\theme.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\thumbnails.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\tooltip.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\type.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\utilities.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\variables.less" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\less\wells.less" />
+    <Content Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.min.map" />
+    <Content Include="Asserts\libs\jquery-3.3.1\jquery-3.3.1.slim.min.map" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PartyGames.Data\PartyGames.Data.csproj">
+      <Project>{f3ff7d3b-ad3a-45b9-8726-8220795fe4bb}</Project>
+      <Name>PartyGames.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PartyGames.Service\PartyGames.Service.csproj">
+      <Project>{8316f941-8dbd-4dc9-9478-c26826a4cdde}</Project>
+      <Name>PartyGames.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -186,7 +441,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

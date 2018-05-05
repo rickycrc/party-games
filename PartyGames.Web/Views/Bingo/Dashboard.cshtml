@@ -1,0 +1,66 @@
+﻿@{
+    Html.AddTitleParts("Dashboard");
+    Layout = "~/Views/Bingo/_Master.cshtml";
+}
+
+<div class="bingo-dashboard">
+    <div class="inner">
+        <div class="cols col-b">
+            @for (var i = 1; i <= 15; i++)
+            {
+                <span class="no" data-val="@i">@i</span>
+            }
+        </div>
+        <div class="cols col-i">
+            @for (var i = 16; i <= 30; i++)
+            {
+                <span class="no" data-val="@i">@i</span>
+            }
+        </div>
+        <div class="cols col-n">
+            @for (var i = 31; i <= 45; i++)
+            {
+                <span class="no" data-val="@i">@i</span>
+            }
+        </div>
+        <div class="cols col-g">
+            @for (var i = 46; i <= 60; i++)
+            {
+                <span class="no" data-val="@i">@i</span>
+            }
+        </div>
+        <div class="cols col-o">
+            @for (var i = 61; i <= 75; i++)
+            {
+                <span class="no" data-val="@i">@i</span>
+            }
+        </div>
+        <div class="bingo-digit d1">
+            0
+        </div>
+        <div class="bingo-digit d2">
+            0
+        </div>
+        <div class="btn-roll"></div>
+        <table class="player-list">
+            <tr class="player-list-header">
+                <td style="width: 80px;">排名</td>
+                <td style="width: 80px;">卡號</td>
+                <td style="width: 280px;">姓名</td>
+                <td style="width: 65px;">注</td>
+                <td>中 (字)</td>
+            </tr>
+        </table>
+        <div class="champion-list">
+            <div class="banner">
+                <div class="champion-count"></div>
+                <img src="/Asserts/images/Bingo_AwardList.png"/>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <script type="text/javascript">
+        Bingo.dashboard.init();
+    </script>
+
+</div>

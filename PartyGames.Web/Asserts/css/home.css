@@ -1,0 +1,55 @@
+﻿html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+html,
+body {
+  height: 100%;
+  font-family: 'Arial Unicode MS', Arial;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #E44D3E url(/Asserts/images/game_home_bg.png) no-repeat bottom center;
+}
+@media screen and (min-width: 500px) {
+  body {
+    background-position-x: right;
+    background-position-y: bottom;
+  }
+}
+.game-menu__logo {
+  text-align: left;
+  padding: 10px 10px;
+}
+.game-menu__list {
+  margin: 15px auto;
+  padding: 0;
+  list-style: none;
+}
+.game-menu__list > li {
+  display: block;
+  text-align: left;
+  padding: 5px 10px;
+}
+.game-menu__list > li.bingo {
+  margin-top: 20px;
+}
+.game-menu__list > li.bingo a {
+  background-color: #676b75;
+}
+.game-menu__list > li a {
+  color: #fff;
+  font-size: 20px;
+  background-color: #292B30;
+  display: inline-block;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+.game-menu__list > li a:hover {
+  text-decoration: underline;
+}

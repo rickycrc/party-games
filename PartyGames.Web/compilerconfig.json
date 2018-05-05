@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "Asserts/css/bingo.css",
+    "inputFile": "Asserts/less/bingo.less"
+  },
+  {
+    "outputFile": "Asserts/css/home.css",
+    "inputFile": "Asserts/less/home.less"
+  },
+  {
+    "outputFile": "Asserts/css/mc.css",
+    "inputFile": "Asserts/less/mc.less"
+  },
+  {
+    "outputFile": "Asserts/css/bootstrap.css",
+    "inputFile": "Asserts/libs/bootstrap-3.3.7/less/bootstrap.less"
+  }
+]
