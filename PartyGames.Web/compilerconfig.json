@@ -12,7 +12,7 @@
     "inputFile": "Asserts/less/mc.less"
   },
   {
-    "outputFile": "Asserts/css/bootstrap.css",
+    "outputFile": "Asserts/libs/bootstrap-3.3.7/bootstrap.css",
     "inputFile": "Asserts/libs/bootstrap-3.3.7/less/bootstrap.less"
   }
 ]

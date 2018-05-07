@@ -12,15 +12,18 @@ namespace PartyGames.Web
                 "~/Asserts/libs/jquery-3.3.1/jquery-3.3.1.min.js",
                 "~/Asserts/libs/fontawesome-free-5.0.7/svg-with-js/js/fontawesome-all.min.js",
                 "~/Asserts/libs/bootstrap-3.3.7/js/bootstrap.min.js",
-                "~/Asserts/libs/jquery.cookie/cookie.js",
-                "~/Asserts/libs/jquery.cookie/querystring.js"
+                "~/Asserts/libs/helpers/cookie.js",
+                "~/Asserts/libs/helpers/querystring.js"
             ));
 
             bundles.Add(new StyleBundle("~/bundles/core/css").Include(
                 "~/Asserts/libs/fontawesome-free-5.0.7/svg-with-js/css/fa-svg-with-js.css",
-                "~/Asserts/css/bootstrap.css",
-                "~/Asserts/css/*.css"));
+                "~/Asserts/libs/bootstrap-3.3.7/bootstrap.min.css",
+                "~/Asserts/libs/animate.css-3.5.1/animate.min.css"));
 
+            bundles.Add(new StyleBundle("~/bundles/home/css").Include("~/Asserts/css/home.css"));
+            bundles.Add(new StyleBundle("~/bundles/mc/css").Include("~/Asserts/css/mc.css"));
+            bundles.Add(new StyleBundle("~/bundles/bingo/css").Include("~/Asserts/css/bingo.css"));
 
             //bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             //            "~/Scripts/jquery-{version}.js"));

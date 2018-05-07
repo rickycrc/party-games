@@ -187,10 +187,6 @@
     <Content Include="Asserts\css\bingo.min.css">
       <DependentUpon>bingo.css</DependentUpon>
     </Content>
-    <Content Include="Asserts\css\bootstrap.css" />
-    <Content Include="Asserts\css\bootstrap.min.css">
-      <DependentUpon>bootstrap.css</DependentUpon>
-    </Content>
     <Content Include="Asserts\css\home.css" />
     <Content Include="Asserts\css\home.min.css">
       <DependentUpon>home.css</DependentUpon>
@@ -228,6 +224,11 @@
     <Content Include="Asserts\js\bingo\bingo_dashboard.js" />
     <Content Include="Asserts\js\bingo\bingo_play.js" />
     <Content Include="Asserts\js\bingo\bingo_master.js" />
+    <Content Include="Asserts\libs\animate.css-3.5.1\animate.min.css" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\bootstrap.css" />
+    <Content Include="Asserts\libs\bootstrap-3.3.7\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
     <Content Include="Asserts\libs\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Asserts\libs\bootstrap-3.3.7\js\bootstrap.js" />
     <Content Include="Asserts\libs\bootstrap-3.3.7\js\bootstrap.min.js" />
