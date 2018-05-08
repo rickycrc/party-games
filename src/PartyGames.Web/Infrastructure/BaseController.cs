@@ -69,6 +69,8 @@ namespace PartyGames.Web.Infrastructure
                 return;
 
             var exception = filterContext.Exception;
+            filterContext.ExceptionHandled = true;
+
 
             filterContext.Result = new ViewResult
             {
@@ -79,7 +81,7 @@ namespace PartyGames.Web.Infrastructure
                 }
             };
 
-            filterContext.ExceptionHandled = true;
+            
         }
     }
 }

@@ -80,9 +80,6 @@ namespace PartyGames.Web.Controllers
         {
             try
             {
-                //ServicePointManager.Expect100Continue = true;
-                //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
                 var user = GetUserOrCreateIfNotExits();
                 var question = _eposWebService.GetMcQuestions(user, type, level);
 
@@ -126,13 +123,14 @@ namespace PartyGames.Web.Controllers
 
                     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
                     ServicePointManager.Expect100Continue = true;
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
 
                     var html = string.Empty;
 
                     using (var response = request.GetResponse() as HttpWebResponse)
                     {
+
                         var sb = new StringBuilder();
                         var buf = new byte[8192];
                         using (var resStream = response.GetResponseStream())
