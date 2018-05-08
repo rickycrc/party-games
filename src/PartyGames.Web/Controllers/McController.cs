@@ -8,13 +8,14 @@ using System.Web.Mvc;
 using AutoMapper;
 using HtmlAgilityPack;
 using PartyGames.Service.WebService;
+using PartyGames.Web.Infrastructure;
 using PartyGames.Web.Models.Mc;
 
 namespace PartyGames.Web.Controllers
 {
 
     [RoutePrefix("mc")]
-    public class McController : Controller
+    public class McController : BaseController
     {
         private readonly IEposWebService _eposWebService;
 
@@ -54,7 +55,6 @@ namespace PartyGames.Web.Controllers
         [Route("play/{urlalias}")]
         public ActionResult Play(string urlalias)
         {
-
             if (string.IsNullOrWhiteSpace(urlalias))
                 return RedirectToAction("Index", "Home");
 

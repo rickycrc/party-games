@@ -62,5 +62,24 @@ namespace PartyGames.Web.Infrastructure
 
             TempData["panel_messages"] = panelMessages;
         }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (filterContext.ExceptionHandled)
+                return;
+
+            var exception = filterContext.Exception;
+
+            filterContext.Result = new ViewResult
+            {
+                ViewName = "~/Views/Shared/Error.cshtml",
+                ViewData = new ViewDataDictionary(filterContext.Controller.ViewData)
+                {
+                    Model = exception
+                }
+            };
+
+            filterContext.ExceptionHandled = true;
+        }
     }
 }

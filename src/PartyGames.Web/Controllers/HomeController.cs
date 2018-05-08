@@ -5,12 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using PartyGames.Service.WebService;
+using PartyGames.Web.Infrastructure;
 using PartyGames.Web.Models.Home;
 using PartyGames.Web.Models.Mc;
 
 namespace PartyGames.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IEposWebService _eposWebService;
 

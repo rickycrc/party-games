@@ -1,13 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@model Exception
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Error</title>
 </head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+<body style="padding: 10px; margin: 0; ">
+
+    <h1>@Model.Message</h1>
+    <div style="line-height: 1.5;">
+        @Html.Raw(Model.ToString().Replace(Environment.NewLine, "<br />"))
+    </div>
+
 </body>
 </html>
