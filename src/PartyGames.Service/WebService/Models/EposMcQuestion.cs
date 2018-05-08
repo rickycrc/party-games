@@ -17,5 +17,7 @@ namespace PartyGames.Service.WebService.Models
         public string McAnswersText { get; set; }
         [JsonProperty("mc_codeid")]
         public string McAnswersValue { get; set; }
+        [JsonProperty("quiz_mp3")]
+        public string McAnswersAudio { get; set; }
     }
 }

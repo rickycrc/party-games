@@ -176,6 +176,7 @@
     <Compile Include="Models\Common\PanelMessageModel.cs" />
     <Compile Include="Models\Home\LandingModel.cs" />
     <Compile Include="Models\Mc\GamePlayModel.cs" />
+    <Compile Include="Models\Mc\McAnswerModel.cs" />
     <Compile Include="Models\Mc\McGameModel.cs" />
     <Compile Include="Models\Mc\McQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

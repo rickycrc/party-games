@@ -36,6 +36,7 @@
 
     var animationEndEvent = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend";
     var $btnPlaySound = $(".main__title .play-sound");
+    var audioPlaying = false;
 
     $btnPlaySound
         .on("change", function (e, $quizEle) {
@@ -52,21 +53,28 @@
                 $this.removeData("audio").hide();
             }
         })
-        .on("click", function (e, forceAudioStop) {
+        .on("click", function (e, callback) {
 
             e.preventDefault();
             var $this = $(this);
 
-            if ($this.hasClass("playing"))
+            if (audioPlaying === true)
                 return;
 
-            $this.addClass("animated swing playing").one(animationEndEvent, function () {
-                $this.removeClass("animated swing playing");
+            audioPlaying = true;
+
+            $this.addClass("animated swing").one(animationEndEvent, function () {
+                $this.removeClass("animated swing");
             });
 
             var soundPlayer = new Audio($this.data("audio"));
-            soundPlayer.play();
+            $(soundPlayer).on("ended", function () {
+                audioPlaying = false;
+                if ($.isFunction(callback))
+                    callback();
+            });
 
+            soundPlayer.play();
         });
 
     $(".panel-start__levels").on("click", function (e) {
@@ -117,19 +125,17 @@
         .on("click", ".quiz__option", function (e) {
             e.preventDefault();
             var $this = $(this);
+
+            if (audioPlaying === true)
+                return;
+            
             if ($this.data("correct") === true) {
 
                 var $thisQuiz = $this.closest(".quiz");
                 var $nextQuiz = $thisQuiz.next();
 
-                var timeout = 0;
-
-                if ($thisQuiz.data("audio")) {
-                    $btnPlaySound.trigger("click");
-                    timeout = 1000;
-                }
-
-                setTimeout(function () {
+                //show next quiz function
+                var showNextQuiz = function () {
                     $thisQuiz.fadeOut(500, function () {
                         $nextQuiz.fadeIn(1000);
                     });
@@ -141,13 +147,51 @@
                         $(".panel-retry").show();
                         $(".panel-play").hide();
                     }
-                    //alert("correct");
-                }, timeout);
+                }
 
+                //play audio if exists
+                if ($thisQuiz.data("audio")) {
+                    $btnPlaySound.trigger("click", [showNextQuiz]);
+                }
+                else {
+                    //or directly show next quiz
+                    showNextQuiz();
+                }
 
-            } else {
+            }
+            else {
+
+                var audioEnd = false;
+                var shakeEnd = false;
+
+                //only remove class playing when audio and shake event ended
+                var onAllEffectEnd = function () {
+                    if (audioEnd === true && shakeEnd === true) {
+                        audioPlaying = false;
+                    }
+                }
+
+                var hasAudio = $this.data("audio");
+
+                //play audio
+                if (hasAudio) {
+                    audioPlaying = true;
+                    var soundPlayer = new Audio($this.data("audio"));
+                    $(soundPlayer).on("ended", function () {
+                        audioEnd = true;
+                        onAllEffectEnd();
+                    });
+                    soundPlayer.play();
+                }
+                else {
+                    audioEnd = true;
+                }
+
+                //shake
                 $this.addClass("animated shake").one(animationEndEvent, function () {
                     $this.removeClass("animated shake");
+                    shakeEnd = true;
+                    onAllEffectEnd();
                 });
             }
         });

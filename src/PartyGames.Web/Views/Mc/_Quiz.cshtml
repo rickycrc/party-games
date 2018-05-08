@@ -10,7 +10,7 @@
         <div class="quiz__answer">
             @foreach (var ans in question.McAnswers)
             {
-                <a class="quiz__option" data-correct="@((ans.Key == question.Answer).ToString().ToLower())" href="#">@ans.Value</a>
+                <a class="quiz__option" data-correct="@((ans.Value == question.Answer).ToString().ToLower())" data-audio="@ans.Mp3" href="#">@ans.Text</a>
             }
         </div>
         <div class="quiz__no">@question.QuestionNo / @Model.Count</div>
