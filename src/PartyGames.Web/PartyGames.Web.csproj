@@ -208,6 +208,7 @@
     <Content Include="Asserts\images\blue-world-blur.jpg" />
     <Content Include="Asserts\images\blue-world.jpg" />
     <Content Include="Asserts\images\Feng_Logo_100.jpg" />
+    <Content Include="Asserts\images\game_home_bg2.jpg" />
     <Content Include="Asserts\images\Game_Box_Logo.jpg" />
     <Content Include="Asserts\images\game_home_bg.png" />
     <Content Include="Asserts\images\Game_Level.png" />

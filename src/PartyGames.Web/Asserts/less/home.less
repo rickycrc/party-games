@@ -9,7 +9,7 @@ html {
 }
 
 html, body {
-    height: 100%;
+    min-height: 100%;
     //font-family: 'Arial Unicode MS', Arial;
     font-family: 'Roboto Slab', serif;
     margin: 0;
@@ -17,49 +17,56 @@ html, body {
 }
 
 body {
-    background: #E44D3E url(/Asserts/images/game_home_bg.png) no-repeat bottom center;
-
-    @media screen and (min-width: 500px) {
-        background-position-x: right;
-        background-position-y: bottom;
-    }
+    background: #fff url(/Asserts/images/game_home_bg2.jpg) no-repeat center center;
+    background-size: cover; 
 }
 
 .game-menu {
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: rgba(0,0,0,.5);
+    overflow: hidden;
 
-    &__logo {
-        text-align: left;
-        padding: 10px 10px;
+    &__title {
+        background-color: #E9B738;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 25px;
     }
 
     &__list {
-        margin: 15px auto;
+        margin: 20px auto;
+        width: 100%;
         padding: 0;
         list-style: none;
 
         > li {
-            display: block;
-            text-align: left;
-            padding: 5px 10px;
+            padding: 5px 30px;
 
             &.bingo {
                 margin-top: 20px;
 
                 a {
-                    background-color: #676b75;
+                    background-color: rgba(43,63,20,.5);
+
+                    &:hover {
+                        background-color: rgba(43,63,20,.8);
+                    }
                 }
             }
 
             a {
+                text-align: center;
                 color: #fff;
                 font-size: 20px;
-                background-color: #292B30;
-                display: inline-block;
-                padding: 5px 10px;
+                background-color: rgba(0,0,0,.4);
+                text-transform: uppercase;
+                display: block;
+                padding: 15px 10px;
                 text-decoration: none;
 
                 &:hover {
-                    text-decoration: underline;
+                    background-color: rgba(0,0,0,.8);
                 }
             }
         }

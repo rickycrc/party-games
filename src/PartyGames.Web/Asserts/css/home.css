@@ -9,48 +9,55 @@ html {
 }
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   font-family: 'Roboto Slab', serif;
   margin: 0;
   padding: 0;
 }
 body {
-  background: #E44D3E url(/Asserts/images/game_home_bg.png) no-repeat bottom center;
+  background: #fff url(/Asserts/images/game_home_bg2.jpg) no-repeat center center;
+  background-size: cover;
 }
-@media screen and (min-width: 500px) {
-  body {
-    background-position-x: right;
-    background-position-y: bottom;
-  }
+.game-menu {
+  max-width: 500px;
+  margin: 30px auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
-.game-menu__logo {
-  text-align: left;
-  padding: 10px 10px;
+.game-menu__title {
+  background-color: #E9B738;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 25px;
 }
 .game-menu__list {
-  margin: 15px auto;
+  margin: 20px auto;
+  width: 100%;
   padding: 0;
   list-style: none;
 }
 .game-menu__list > li {
-  display: block;
-  text-align: left;
-  padding: 5px 10px;
+  padding: 5px 30px;
 }
 .game-menu__list > li.bingo {
   margin-top: 20px;
 }
 .game-menu__list > li.bingo a {
-  background-color: #676b75;
+  background-color: rgba(43, 63, 20, 0.5);
+}
+.game-menu__list > li.bingo a:hover {
+  background-color: rgba(43, 63, 20, 0.8);
 }
 .game-menu__list > li a {
+  text-align: center;
   color: #fff;
   font-size: 20px;
-  background-color: #292B30;
-  display: inline-block;
-  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  display: block;
+  padding: 15px 10px;
   text-decoration: none;
 }
 .game-menu__list > li a:hover {
-  text-decoration: underline;
+  background-color: rgba(0, 0, 0, 0.8);
 }
