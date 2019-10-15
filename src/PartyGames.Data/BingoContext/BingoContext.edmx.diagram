@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c3b1804963f745f385c99edbf0072ca2" Name="Diagram1">
+      <Diagram DiagramId="bce11e830d724c13bcf6a10b8bd388f5" Name="Diagram1">
         <EntityTypeShape EntityType="BingoContextModel.Card" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BingoContextModel.Game" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BingoContextModel.Player" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />

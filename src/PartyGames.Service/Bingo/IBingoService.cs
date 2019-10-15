@@ -13,5 +13,6 @@ namespace PartyGames.Service.Bingo
         Card GetCardByCardNo(string cardNo);
         int RollNewNumber(Game game);
         Card GetNewUniqueCard();
+        void SeedBingo(string code);
     }
 }

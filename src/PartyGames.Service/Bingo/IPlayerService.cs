@@ -13,5 +13,6 @@ namespace PartyGames.Service.Bingo
         Player GetCachedPlayer(string key);
         IList<Player> GetPlayersByGame(Game game);
         Player AssignPlayerToCard(Game game, string name, Card card);
+        Player GetPlayerByCard(Game game, string cardNo, string checkDigit);
     }
 }

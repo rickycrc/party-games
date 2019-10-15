@@ -25,8 +25,8 @@ namespace PartyGames.Data.BingoContext
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Card> Cards { get; set; }
-        public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Card> Card { get; set; }
+        public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<Player> Player { get; set; }
     }
 }

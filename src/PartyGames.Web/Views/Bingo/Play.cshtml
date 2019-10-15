@@ -13,9 +13,14 @@
         <div class="bingo-loading">
             <i class="fas fa-spinner fa-pulse"></i> 載入中
         </div>
+        @*<div class="enter-your-name">
+                @Html.TextBox("txtName", "", new {placeholder = "請輸入您的姓名", @class = "input-name"})
+                @Html.TextBox("txtPassword", "", new {placeholder = "請輸入密碼", type = "tel", pattern = "[0-9]*", maxlength = "4", @class = "input-password"})
+                <button id="btnSubmitName" class="btn btn-primary">開 始</button>
+            </div>*@
         <div class="enter-your-name">
-            @Html.TextBox("txtName", "", new {placeholder = "請輸入您的姓名", @class = "input-name"})
-            @Html.TextBox("txtPassword", "", new {placeholder = "請輸入密碼", type = "tel", pattern = "[0-9]*", maxlength = "4", @class = "input-password"})
+            @Html.TextBox("txtCardNo", "", new { placeholder = "請輸入您的卡號", @class = "input-name" })
+            @Html.TextBox("txtCheckDigit", "", new { placeholder = "請輸入卡上第一個數字", type = "tel", pattern = "[0-9]*", maxlength = "10", @class = "input-password" })
             <button id="btnSubmitName" class="btn btn-primary">開 始</button>
         </div>
         <div class="bingo-no-box">
@@ -24,12 +29,12 @@
             <div class="inner">
             </div>
             <div class="footer-logo">
-                <img src="/Asserts/images/aclogo_small.png"/>
+                <img src="/Asserts/images/aclogo_small.png" />
             </div>
         </div>
         <div class="bingo-change-name">
             <div class="title">更改你的姓名</div>
-            @Html.TextBox("txtChangeName", "", new {placeholder = "請輸入您的姓名", @class = "input-name"})
+            @Html.TextBox("txtChangeName", "", new { placeholder = "請輸入您的姓名", @class = "input-name" })
             <button id="btnChangeName" class="btn btn-primary">確 定</button>
         </div>
     </div>

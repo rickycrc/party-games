@@ -1,4 +1,9 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700');
+﻿@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CGwRg.ttf) format('truetype');
+}
 html {
   box-sizing: border-box;
 }
@@ -23,6 +28,9 @@ body {
 }
 .main {
   width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
   margin-top: 20px;
@@ -65,19 +73,19 @@ body {
   font-size: 15px;
   display: none;
 }
-@media screen and (min-width: 500px) {
-  .main {
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+/*@media screen and (min-width: 500px) {
+    .main {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}*/
 .panel-start {
   overflow: hidden;
   margin-top: 20px;
 }
 .panel-start.loading {
-  opacity: .3;
+  opacity: 0.3;
 }
 .panel-start__levels {
   display: block;

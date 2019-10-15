@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h2>Game Details</h2>
+                <h3>Game Details</h3>
                 <table class="table table-bordered">
                     <tr>
                         <td style="width: 200px;">Password</td>
@@ -48,11 +48,21 @@
                         <td>[@Model.Game.RolledNumbers.Count] - @string.Join(", ", Model.Game.RolledNumbers)</td>
                     </tr>
                 </table>
+
+                <h3>Seed Data</h3>
+                @using (Html.BeginForm("SeedBingo", "Bingo", FormMethod.Post, new { id = "frmSeed" }))
+                {
+                    <div id="seed-wrapper" url="@Url.Action("")">
+                        <button type="submit" class="btn btn-primary" onclick="getElementById('seedCode').value = 'FengHua2019'; return confirm('Are you sure want to add the cards to game?');">FengHua2019</button>
+                    </div>
+                    <input type="hidden" name="seedCode" id="seedCode" />
+                }
+
             </div>
             <div class="col-md-6">
                 @using (Html.BeginForm("AdminNewCard", "Bingo", FormMethod.Post))
                 {
-                    <h2>Add new card</h2>
+                    <h3>Add/Edit card</h3>
                     <table class="table table-bordered">
                         <tr>
                             <td style="width: 200px;">**Card Number:</td>
@@ -72,7 +82,18 @@
                 }
             </div>
         </div>
+        <script type="text/javascript">
+            $("#NewCard_No").on("keyup", function () {
+                var card = $("#card_" + $(this).val());
+                if (card.length > 0) {
+                    $("#NewCard_Name").val(card.data("name"));
+                }
+                else {
+                    $("#NewCard_Name").val("");
+                }
 
+            });
+        </script>
 
         <h2>Total @Model.Players.Count players in game</h2>
 
@@ -84,7 +105,7 @@
                 var icon = mark3 == "X" ? "<i class='fa fa-times'></i>" : "<i class='fa fa-check' style='color: Green;'></i> " + mark3;
 
                 <div class="col-md-3">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="card_@player.CardUniqueNo" data-name="@player.Name.ToUpper()">
                         <tr>
                             <td>No.</td>
                             <td>#@player.CardUniqueNo</td>

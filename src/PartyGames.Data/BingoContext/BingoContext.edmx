@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BingoContextModel.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BingoContextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Card">
           <Key>
             <PropertyRef Name="CardId" />
@@ -51,9 +51,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BingoContextModelStoreContainer">
-          <EntitySet Name="Card" EntityType="Self.Card" store:Type="Tables" />
-          <EntitySet Name="Game" EntityType="Self.Game" store:Type="Tables" />
-          <EntitySet Name="Player" EntityType="Self.Player" store:Type="Tables" />
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Player_Game" Association="Self.FK_Player_Game">
             <End Role="Game" EntitySet="Game" />
             <End Role="Player" EntitySet="Player" />
@@ -83,7 +83,7 @@
           <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RolledNumbers" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Players" Relationship="Self.FK_Player_Game" FromRole="Game" ToRole="Player" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Player_Game" FromRole="Game" ToRole="Player" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -112,12 +112,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BingoContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cards" EntityType="Self.Card" />
-          <EntitySet Name="Games" EntityType="Self.Game" />
-          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Card" EntityType="Self.Card" />
+          <EntitySet Name="Game" EntityType="Self.Game" />
+          <EntitySet Name="Player" EntityType="Self.Player" />
           <AssociationSet Name="FK_Player_Game" Association="Self.FK_Player_Game">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="Player" EntitySet="Players" />
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Player" EntitySet="Player" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -126,7 +126,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BingoContextModelStoreContainer" CdmEntityContainer="BingoContext">
-          <EntitySetMapping Name="Cards">
+          <EntitySetMapping Name="Card">
             <EntityTypeMapping TypeName="BingoContextModel.Card">
               <MappingFragment StoreEntitySet="Card">
                 <ScalarProperty Name="CardId" ColumnName="CardId" />
@@ -137,7 +137,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Games">
+          <EntitySetMapping Name="Game">
             <EntityTypeMapping TypeName="BingoContextModel.Game">
               <MappingFragment StoreEntitySet="Game">
                 <ScalarProperty Name="GameId" ColumnName="GameId" />
@@ -148,7 +148,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Players">
+          <EntitySetMapping Name="Player">
             <EntityTypeMapping TypeName="BingoContextModel.Player">
               <MappingFragment StoreEntitySet="Player">
                 <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
@@ -176,7 +176,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

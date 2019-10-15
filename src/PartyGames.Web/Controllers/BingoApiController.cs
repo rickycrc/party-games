@@ -91,6 +91,40 @@ namespace PartyGames.Web.Controllers
         }
 
         [HttpPost]
+        [Route("GetPlayerByCard")]
+        public ActionResult GetPlayerByCard(string cardNo, string checkDigit)
+        {
+            if (string.IsNullOrEmpty(cardNo))
+                return AjaxError("請輸入卡號。");
+
+            if (string.IsNullOrEmpty(checkDigit))
+                return AjaxError("請輸入卡上的第一個號碼。");
+
+            try
+            {
+                var game = _bingoService.GetLiveGame();
+                var player = _playerService.GetPlayerByCard(game, cardNo, checkDigit);
+
+                if (player == null)
+                    return AjaxError("請輸入正確的卡號。");
+
+                var playerModel = Mapper.Map(player, new PlayerModel());
+                var gameModel = Mapper.Map(game, new GameModel());
+
+                return Json(new
+                {
+                    Success = true,
+                    Player = playerModel,
+                    Game = gameModel
+                });
+            }
+            catch (Exception ex)
+            {
+                return AjaxError(ex.Message);
+            }
+        }
+
+        [HttpPost]
         [Route("live-data")]
         public ActionResult GetLiveData(string key)
         {
@@ -196,9 +230,10 @@ namespace PartyGames.Web.Controllers
 
                     if (isBingo)
                     {
+                        var runTonyRule = true;
                         //1-5 個要中 1 行
                         //6 個或以上要中 2 行
-                        var rulesChangeBreakPoint = 999;
+                        var rulesChangeBreakPoint = runTonyRule ? 5 : 999;
                         var championListIdx = championList[0].Count >= rulesChangeBreakPoint ? 1 : 0;
 
                         //handle 第5個 slot 有多人中
@@ -210,8 +245,6 @@ namespace PartyGames.Web.Controllers
                         }
 
                         //*** 6 個或以上要中 2 行 ***
-                        //(championListIdx == 1 && player.GameMark.Mark3.Count >= 2)
-
                         if (championListIdx == 0 || championListIdx == 1 && player.GameMark.Mark3.Count >= 2)
                             addToChamptionList(championListIdx);
                         else

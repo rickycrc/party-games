@@ -79,10 +79,33 @@ namespace PartyGames.Web.Controllers
 
             return RedirectToAction("Admin");
         }
+        public ActionResult SeedBingo(string seedCode)
+        {
+            if (!string.IsNullOrEmpty(seedCode))
+            {
+                _bingoService.SeedBingo(seedCode);
+            }
+
+            return RedirectToAction("Admin");
+        }
+
 
         [HttpPost]
         public ActionResult AdminNewCard(NewCardModel newCard)
         {
+            var game = _bingoService.GetLiveGame();
+            var cardPlayer = _playerService.GetPlayerByCard(game, newCard.No, game.Password);
+
+            if (cardPlayer != null)
+            {
+                cardPlayer.Name = newCard.Name;
+                _playerService.UpdatePlayer(cardPlayer);
+
+                AddPanelMessage(new PanelMessageModel(PanelMessageType.success, $"Success! Card {cardPlayer.CardUniqueNo} updated."));
+                return RedirectToAction("Admin");
+            }
+
+
             var card = _bingoService.GetCardByCardNo(newCard.No);
             if (card == null || card.CardType != "MANUAL" || card.Used)
             {
@@ -93,7 +116,7 @@ namespace PartyGames.Web.Controllers
             if (string.IsNullOrEmpty(newCard.Name))
                 newCard.Name = card.CardNo;
 
-            var game = _bingoService.GetLiveGame();
+
             var player = _playerService.AssignPlayerToCard(game, newCard.Name, card);
 
             AddPanelMessage(new PanelMessageModel(PanelMessageType.success, $"Success! {player.Name} has been assigned to card #{newCard.No}."));

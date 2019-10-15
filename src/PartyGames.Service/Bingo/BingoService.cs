@@ -41,14 +41,16 @@ namespace PartyGames.Service.Bingo
             game.RolledNumbers = null;
             _gameRepository.Update(game);
 
-            _cardRepository.ExecuteSqlCommand("DELETE FROM [Player]");
-            _cardRepository.ExecuteSqlCommand("ALTER TABLE [Player] ALTER COLUMN [PlayerId] IDENTITY (1,1)");
+            _cardRepository.ExecuteSqlCommand("TRUNCATE TABLE [Player]");
+            //_cardRepository.ExecuteSqlCommand("ALTER TABLE [Player] ALTER COLUMN [PlayerId] IDENTITY (1,1)");
 
             if (resetCard)
             {
                 //Delete card in db
-                _cardRepository.ExecuteSqlCommand("DELETE FROM [Card]");
-                _cardRepository.ExecuteSqlCommand("ALTER TABLE [Card] ALTER COLUMN [CardId] IDENTITY (1,1)");
+                _cardRepository.ExecuteSqlCommand("TRUNCATE TABLE [Card]");
+
+                //_cardRepository.ExecuteSqlCommand("DELETE FROM [Card]");
+                //_cardRepository.ExecuteSqlCommand("ALTER TABLE [Card] ALTER COLUMN [CardId] IDENTITY (1,1)");
 
                 var cards = _webService.GetBingoCards();
                 var cardList = cards.Data.Select(c => new Card
@@ -65,6 +67,14 @@ namespace PartyGames.Service.Bingo
             {
                 _cardRepository.ExecuteSqlCommand("UPDATE [Card] SET Used = 0");
             }
+
+            _cacheManager.RemoveByPattern(CacheKey.BingoGamePattern);
+            _cacheManager.RemoveByPattern(CacheKey.BingoPlayerPattern);
+        }
+
+        public void SeedBingo(string code)
+        {
+            _cardRepository.ExecuteSqlCommand("EXEC InitBingo_" + code);
 
             _cacheManager.RemoveByPattern(CacheKey.BingoGamePattern);
             _cacheManager.RemoveByPattern(CacheKey.BingoPlayerPattern);

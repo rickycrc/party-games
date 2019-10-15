@@ -25,16 +25,16 @@ namespace PartyGames.Web.Models.Mc
                 var mv = McAnswersValue.Split(',');
                 var ma = McAnswersAudio.Split(',');
 
-                if (mt.Length != mv.Length || mt.Length != ma.Length)
+                if (mt.Length != mv.Length)
                     return result;
 
                 for (int i = 0; i < mt.Length; i++)
                 {
                     var code = mv[i].Trim();
                     var text = mt[i].Trim();
-                    var audio = ma[i].Trim();
+                    var audio = i < ma.Length ? ma[i].Trim() : null;
 
-                    if (audio == "MediaFile-NotFound")
+                    if (audio == null || audio == "MediaFile-NotFound")
                         audio = "";
 
                     if (string.IsNullOrEmpty(McAnswersText) || string.IsNullOrEmpty(McAnswersValue))

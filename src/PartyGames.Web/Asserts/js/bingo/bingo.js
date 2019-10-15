@@ -260,7 +260,7 @@ Bingo.dashboard.newWinner = function() {
 };
 Bingo.play = Bingo.play || {};
 
-Bingo.play.getBingoKey = function() {
+Bingo.play.getBingoKey = function () {
 
     var bingokey = request.card || $.cookie("bingokey");
     return bingokey;
@@ -268,22 +268,26 @@ Bingo.play.getBingoKey = function() {
 };
 
 //init
-Bingo.play.init = function() {
+Bingo.play.init = function () {
 
     $("body").addClass("play");
 
-    $("#btnSubmitName").on("click",
-        function(e) {
-            e.preventDefault();
-            Bingo.play.addPlayer();
-        });
+    $("#btnSubmitName").on("click", function (e) {
+        e.preventDefault();
+        //Bingo.play.addPlayer();
+        Bingo.play.getPlayerByCard();
+    });
 
-    $("#btnChangeName").on("click",
-        function(e) {
-            e.preventDefault();
-            var name = $.trim($("#txtChangeName").val());
-            Bingo.play.changeName(name);
-        });
+    $("#btnSubmitCard").on("click", function (e) {
+        e.preventDefault();
+        Bingo.play.getPlayerByCard();
+    });
+
+    $("#btnChangeName").on("click", function (e) {
+        e.preventDefault();
+        var name = $.trim($("#txtChangeName").val());
+        Bingo.play.changeName(name);
+    });
 
 
     //mock play
@@ -294,24 +298,33 @@ Bingo.play.init = function() {
         $("#txtName").val(decodeURIComponent(request.name));
         $("#txtPassword").val(request.pwd);
 
-        $("#btnSubmitName").trigger("click");
+        //$("#btnSubmitName").trigger("click");
 
     } else {
 
-        var bingokey = Bingo.play.getBingoKey();
+        //cancel automatcally get player 2019-03-01
 
-        if (bingokey) {
-            Bingo.play.getPlayer(bingokey);
-        } else {
+        if (request.card) {
+            Bingo.play.getPlayer(request.card);
+        }
+        else {
             $(".enter-your-name").show();
         }
+
+        //var bingokey = Bingo.play.getBingoKey();
+
+        //if (bingokey) {
+        //    Bingo.play.getPlayer(bingokey);
+        //} else {
+        //    $(".enter-your-name").show();
+        //}
     }
 
     $(".bingo-loading").hide();
 };
 
 //createBingoBox
-Bingo.play.createBingoBox = function(game, player) {
+Bingo.play.createBingoBox = function (game, player) {
 
     //set key
     $(".bingo-gamekey").html(player.Key);
@@ -322,7 +335,7 @@ Bingo.play.createBingoBox = function(game, player) {
     var $link = $("<a href='#' class='edit-name'><i class='fas fa-pencil-alt fa-xs'></i></a>");
 
     $link.on("click",
-        function(e) {
+        function (e) {
             e.preventDefault();
 
             $(".bingo-no-box").hide();
@@ -343,7 +356,7 @@ Bingo.play.createBingoBox = function(game, player) {
     $(".bingo-no-box .inner").html("");
 
     $.each(nos,
-        function(idx, no) {
+        function (idx, no) {
 
             var $box = $("<div class='bingoBox'><div class='bingoItem'></div></div>");
             var $inner = $("<div class='bingoNumber' />");
@@ -365,23 +378,23 @@ Bingo.play.createBingoBox = function(game, player) {
 };
 
 //addPlayer
-Bingo.play.addPlayer = function() {
+Bingo.play.addPlayer = function () {
 
     if (Bingo.isLoading())
         return false;
 
     $.ajax({
-            url: $.api("addPlayer"),
-            type: "POST",
-            data: {
-                name: $("#txtName").val(),
-                password: $("#txtPassword").val()
-            },
-            beforeSend: function() {
-                Bingo.startLoading();
-            }
-        })
-        .done(function(data) {
+        url: $.api("addPlayer"),
+        type: "POST",
+        data: {
+            name: $("#txtName").val(),
+            password: $("#txtPassword").val()
+        },
+        beforeSend: function () {
+            Bingo.startLoading();
+        }
+    })
+        .done(function (data) {
 
             if (!Bingo.isValidResponse(data))
                 return;
@@ -390,7 +403,40 @@ Bingo.play.addPlayer = function() {
 
             Bingo.play.createBingoBox(data.Game, data.Player);
         })
-        .always(function() {
+        .always(function () {
+            Bingo.stopLoading();
+        });
+
+    return false;
+};
+
+//getPlayerByCard
+Bingo.play.getPlayerByCard = function () {
+
+    if (Bingo.isLoading())
+        return false;
+
+    $.ajax({
+        url: $.api("getPlayerByCard"),
+        type: "POST",
+        data: {
+            cardNo: $("#txtCardNo").val(),
+            checkDigit: $("#txtCheckDigit").val()
+        },
+        beforeSend: function () {
+            Bingo.startLoading();
+        }
+    })
+        .done(function (data) {
+
+            if (!Bingo.isValidResponse(data))
+                return;
+
+            $.cookie("bingokey", data.Player.Key, { expires: 7 });
+
+            Bingo.play.createBingoBox(data.Game, data.Player);
+        })
+        .always(function () {
             Bingo.stopLoading();
         });
 
@@ -398,25 +444,25 @@ Bingo.play.addPlayer = function() {
 };
 
 //change name
-Bingo.play.changeName = function(name) {
+Bingo.play.changeName = function (name) {
 
     if (Bingo.isLoading())
         return false;
 
     $.ajax({
-            url: $.api("changeName"),
-            data: {
-                name: name,
-                key: Bingo.play.getBingoKey
-            },
-            type: "POST"
-        })
-        .done(function(data) {
+        url: $.api("changeName"),
+        data: {
+            name: name,
+            key: Bingo.play.getBingoKey
+        },
+        type: "POST"
+    })
+        .done(function (data) {
             if (data.Player) {
                 $(".bingo-no-box .card-name .name").html(data.Player.CardName);
             }
         })
-        .always(function() {
+        .always(function () {
             Bingo.stopLoading();
             $(".bingo-no-box").show();
             $(".bingo-change-name").hide();
@@ -425,22 +471,22 @@ Bingo.play.changeName = function(name) {
 };
 
 //getPlayer
-Bingo.play.getPlayer = function(key) {
+Bingo.play.getPlayer = function (key) {
 
     if (Bingo.isLoading())
         return false;
 
     $.ajax({
-            url: $.api("getPlayer"),
-            type: "POST",
-            data: {
-                key: key
-            },
-            beforeSend: function() {
-                Bingo.startLoading();
-            }
-        })
-        .done(function(data) {
+        url: $.api("getPlayer"),
+        type: "POST",
+        data: {
+            key: key
+        },
+        beforeSend: function () {
+            Bingo.startLoading();
+        }
+    })
+        .done(function (data) {
 
             //if (!Bingo.isValidResponse(data))
             //return;
@@ -454,14 +500,14 @@ Bingo.play.getPlayer = function(key) {
 
             Bingo.play.createBingoBox(data.Game, data.Player);
         })
-        .always(function() {
+        .always(function () {
             Bingo.stopLoading();
         });
 
 };
 
 //startReceiveLiveData
-Bingo.play.startReceiveLiveData = function() {
+Bingo.play.startReceiveLiveData = function () {
 
     if (!$(".bingo-no-box").is(":visible"))
         return;
@@ -470,41 +516,41 @@ Bingo.play.startReceiveLiveData = function() {
         clearInterval($(".bingo-no-box").data("interval"));
     }
 
-    var interval = setInterval(function() {
+    var interval = setInterval(function () {
 
-            //if (Bingo.isLoading())
-            //    return false;
+        //if (Bingo.isLoading())
+        //    return false;
 
-            var bingoKey = Bingo.play.getBingoKey();
+        var bingoKey = Bingo.play.getBingoKey();
 
-            $.ajax({
-                    url: $.api("liveData"),
-                    type: "POST",
-                    data: {
-                        key: bingoKey
-                    }
-                })
-                .done(function(data) {
+        $.ajax({
+            url: $.api("liveData"),
+            type: "POST",
+            data: {
+                key: bingoKey
+            }
+        })
+            .done(function (data) {
 
-                    if (!data.Success) {
-                        $.removeCookie("bingokey");
-                        window.location.href = "/bingo/play?error=invalid_player";
-                        return;
-                    }
+                if (!data.Success) {
+                    $.removeCookie("bingokey");
+                    window.location.href = "/bingo/play?error=invalid_player";
+                    return;
+                }
 
-                    $(".bingoNumber").removeClass("active");
+                $(".bingoNumber").removeClass("active");
 
-                    $.each(data.Numbers,
-                        function(idx, no) {
-                            $(".bingoNumber[data-val='" + no + "']").addClass("active");
-                        });
+                $.each(data.Numbers,
+                    function (idx, no) {
+                        $(".bingoNumber[data-val='" + no + "']").addClass("active");
+                    });
 
-                })
-                .always(function() {
-                    //Bingo.stopLoading();
-                });
+            })
+            .always(function () {
+                //Bingo.stopLoading();
+            });
 
-        },
+    },
         5000);
 
     $(".bingo-no-box").data("interval", interval);

@@ -81,6 +81,29 @@ namespace PartyGames.Service.Bingo
             return _playerRepository.Table.FirstOrDefault(c => c.Key == key);
         }
 
+        public Player GetPlayerByCard(Game game, string cardNo, string checkDigit)
+        {
+            if (string.IsNullOrEmpty(cardNo) || string.IsNullOrEmpty(checkDigit))
+                return null;
+
+            var bypassCheckDigit = false;
+            int tpCheckDigit;
+
+            if (game.Password == checkDigit)
+            {
+                bypassCheckDigit = true;
+            }
+
+            if (int.TryParse(checkDigit, out tpCheckDigit))
+            {
+                checkDigit = tpCheckDigit.ToString("00");
+            }
+
+            return _playerRepository.Table.FirstOrDefault(c => c.GameId == game.GameId
+                                                               && c.CardUniqueNo == cardNo
+                                                               && (bypassCheckDigit || c.CardNumbers.Substring(0, 2) == checkDigit));
+        }
+
         public Player GetCachedPlayer(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -92,7 +115,7 @@ namespace PartyGames.Service.Bingo
 
         public IList<Player> GetPlayersByGame(Game game)
         {
-            return _playerRepository.Table.Where(c => c.GameId == game.GameId).ToList();
+            return _playerRepository.Table.Where(c => c.GameId == game.GameId && !c.Name.StartsWith("***")).ToList();
         }
 
         public Player AssignPlayerToCard(Game game, string name, Card card)
